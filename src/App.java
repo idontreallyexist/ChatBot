@@ -8,6 +8,10 @@ public class App {
         while(true){
             String action = input.nextLine();
             clearScreen();
+            if(action.toLowerCase().equals("quit")){
+                break;
+            }
+            tempDialouge(action);
         }
     }
     public static void clearScreen() {  
