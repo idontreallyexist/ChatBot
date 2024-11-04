@@ -3,8 +3,9 @@ public class App {
     int mood = 80;
     public static void main(String[] args) throws Exception {
         clearScreen();
-        Scanner input = new Scanner (System.in);
+        Scanner input = new Scanner(System.in);
         System.out.println("MiniWag: Hello and welcome to Sandwich Emperor! What do you want today?");
+        System.out.println("Type 'quit' to exit the conversation");
         while(true){
             String action = input.nextLine();
             clearScreen();
@@ -20,7 +21,7 @@ public class App {
     }  
     public static void tempDialouge(String action){
         if(action.toLowerCase().indexOf("menu")!=-1){
-            System.out.println("Sure! Here is the menu: ");
+            System.out.println("MiniWag: Sure! Here is the menu: ");
             System.out.println("Menu go here");
         }
         else{
@@ -30,13 +31,13 @@ public class App {
     public static void randomResponse(){
         int num = (int)(Math.random()*3);
         if(num==0){
-            System.out.println("Uhh sorry, I didn't understand that");
+            System.out.println("MiniWag: Uhh sorry, I didn't understand that");
         }
         else if(num==1){
-            System.out.println("Um, do you need help? Maybe ask for the menu?");
+            System.out.println("MiniWag: Um, do you need help? Maybe ask for the menu?");
         }
         else if(num==2){
-            System.out.println("I don't think I can do that, try asking for a menu");
+            System.out.println("MiniWag: I don't think understand that, try asking for a menu");
         }
     }
 }
