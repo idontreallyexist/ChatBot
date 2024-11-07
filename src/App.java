@@ -21,7 +21,7 @@ public class App {
         System.out.flush();  
     }  
     public static void menuDialouge(String action){
-        if(action.toLowerCase().indexOf("menu")!=-1){
+        if(ck(action,"menu")){
             if(money>15){
                 System.out.println("MiniWag: Sure! Here is the menu: ");
                 System.out.println("Menu go here");
@@ -32,8 +32,8 @@ public class App {
             }
             
         }
-        else if(action.toLowerCase().indexOf("money")!=-1){
-            
+        else if(ck(action,"money")){
+            clearScreen();
         }
         else{
             randomResponse();
@@ -53,5 +53,11 @@ public class App {
         else if(num==3){
             System.out.println("MiniWag: Not sure what you're trying to say, do you want a menu?");
         }
+    }
+    public static boolean ck(String input, String keyword){
+        if(input.toLowerCase().indexOf(keyword)!=-1){
+            return true;
+        }
+        return false;
     }
 }
