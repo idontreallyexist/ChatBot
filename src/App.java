@@ -1,7 +1,7 @@
 import java.util.Scanner;
 public class App {
-    int mood = 80;
-    int money = 150;
+    static int mood = 80;
+    static int money = 0;
     public static void main(String[] args) throws Exception {
         clearScreen();
         Scanner input = new Scanner(System.in);
@@ -22,8 +22,18 @@ public class App {
     }  
     public static void menuDialouge(String action){
         if(action.toLowerCase().indexOf("menu")!=-1){
-            System.out.println("MiniWag: Sure! Here is the menu: ");
-            System.out.println("Menu go here");
+            if(money>15){
+                System.out.println("MiniWag: Sure! Here is the menu: ");
+                System.out.println("Menu go here");
+            }
+            else{
+                System.out.println("MiniWag: Wait hold on, you don't have any money!");
+                System.out.println("MiniWag: Ask for money and do a minigame to get some");
+            }
+            
+        }
+        else if(action.toLowerCase().indexOf("money")!=-1){
+            
         }
         else{
             randomResponse();
