@@ -1,6 +1,7 @@
 import java.util.Scanner;
 public class App {
     int mood = 80;
+    int money = 150;
     public static void main(String[] args) throws Exception {
         clearScreen();
         Scanner input = new Scanner(System.in);
@@ -12,14 +13,14 @@ public class App {
             if(action.toLowerCase().equals("quit")){
                 break;
             }
-            tempDialouge(action);
+            menuDialouge(action);
         }
     }
     public static void clearScreen() {  
         System.out.print("\033[H\033[2J");  
         System.out.flush();  
     }  
-    public static void tempDialouge(String action){
+    public static void menuDialouge(String action){
         if(action.toLowerCase().indexOf("menu")!=-1){
             System.out.println("MiniWag: Sure! Here is the menu: ");
             System.out.println("Menu go here");
@@ -29,7 +30,7 @@ public class App {
         }
     }
     public static void randomResponse(){
-        int num = (int)(Math.random()*3);
+        int num = (int)(Math.random()*4);
         if(num==0){
             System.out.println("MiniWag: Uhh sorry, I didn't understand that");
         }
@@ -38,6 +39,9 @@ public class App {
         }
         else if(num==2){
             System.out.println("MiniWag: I don't think understand that, try asking for a menu");
+        }
+        else if(num==3){
+            System.out.println("MiniWag: Not sure what you're trying to say, do you want a menu?");
         }
     }
 }
