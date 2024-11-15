@@ -1,7 +1,7 @@
 import java.util.Scanner;
 public class App {
     static int mood = 80;
-    static int money = 0;
+    static double money = 15;
     public static void main(String[] args) throws Exception {
         clearScreen();
         Scanner input = new Scanner(System.in);
@@ -21,8 +21,8 @@ public class App {
         System.out.flush();  
     }  
     public static void menuDialouge(String action){
-        if(ck(action,new String[] {"menu"})){
-            if(money>15){
+        if(ck(action,new String[] {"menu"}, false)){
+            if(money>=15){
                 Scanner input = new Scanner(System.in);
                 while(true){
                     System.out.println("MiniWag: Sure! Here is the menu:");
@@ -30,16 +30,18 @@ public class App {
                     System.out.println("The Stunner: $50");
                     System.out.println("Large Mike: $25");
                     System.out.println("0.1133981 Kilogramer: $30");
-                    System.out.println("The Whyaburger: $30");
-                    System.out.println("Solid Gold Brick (Phone model): $18,000");
+                    System.out.println("Solid Gold Brick: $18,000");
                     System.out.println("Canada: $2,000,000,000,000,000");
                     System.out.println("Spongebob: $0.62");
+                    System.out.println("World Piece: $1.79769323e+308");
                     System.out.println("Spicy Chicken Sandwich: $45");
+                    System.out.println("The Whyaburger: $30");
                     String action2 = input.nextLine();
                     clearScreen();
                     if(action.toLowerCase().equals("quit")){
                         break;
                     }
+                    foodResponse(action);
                 }
             }
             else{
@@ -48,11 +50,16 @@ public class App {
             }
             
         }
-        else if(ck(action,new String[] {"money"})){
+        else if(ck(action,new String[] {"money"}, false)){
             clearScreen();
         }
         else{
             randomResponse();
+        }
+    }
+    public static void foodResponse(String action){
+        if(ck(action, new String[] {"grilled", "cheese"}, true)){
+
         }
     }
     public static void randomResponse(){
@@ -70,12 +77,24 @@ public class App {
             System.out.println("MiniWag: Not sure what you're trying to say, do you want a menu?");
         }
     }
-    public static boolean ck(String input, String[] keywords){
+    public static boolean ck(String input, String[] keywords, Boolean andFunction){
+        int count = 0;
         for (int i=0;i<keywords.length;i++) {
             if(input.toLowerCase().indexOf(keywords[i])!=-1){
-                return true;
+                if(andFunction==false){
+                    return true;
+                }
+                else{
+                    count++;
+                }
             }
         }
-        return false;
+        if (andFunction==false||count<keywords.length){
+            return false;
+        }
+        else{
+            return true;
+        }
+        
     }
 }
