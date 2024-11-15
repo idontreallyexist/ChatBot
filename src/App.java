@@ -21,10 +21,10 @@ public class App {
         System.out.flush();  
     }  
     public static void menuDialouge(String action){
-        if(ck(action,"menu")){
+        if(ck(action,new String[] {"menu"})){
             if(money>15){
                 System.out.println("MiniWag: Sure! Here is the menu: ");
-                System.out.println("Menu go here");
+                System.out.println("");
             }
             else{
                 System.out.println("MiniWag: Wait hold on, you don't have any money!");
@@ -32,7 +32,7 @@ public class App {
             }
             
         }
-        else if(ck(action,"money")){
+        else if(ck(action,new String[] {"money"})){
             clearScreen();
         }
         else{
@@ -54,9 +54,11 @@ public class App {
             System.out.println("MiniWag: Not sure what you're trying to say, do you want a menu?");
         }
     }
-    public static boolean ck(String input, String keyword){
-        if(input.toLowerCase().indexOf(keyword)!=-1){
-            return true;
+    public static boolean ck(String input, String[] keywords){
+        for (int i=0;i<keywords.length;i++) {
+            if(input.toLowerCase().indexOf(keywords[i])!=-1){
+                return true;
+            }
         }
         return false;
     }
