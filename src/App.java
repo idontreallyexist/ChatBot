@@ -13,14 +13,14 @@ public class App {
             if(action.toLowerCase().equals("quit")){
                 break;
             }
-            menuDialouge(action);
+            menuDialogue(action);
         }
     }
     public static void clearScreen() {  
         System.out.print("\033[H\033[2J");  
         System.out.flush();  
     }  
-    public static void menuDialouge(String action){
+    public static void menuDialogue(String action){
         if(ck(action,new String[] {"menu"})){
             if(money>=10){
                 Scanner input = new Scanner(System.in);
@@ -59,7 +59,7 @@ public class App {
     }
     public static void foodResponse(String action){
         if(ck(action, new String[] {"what"})&&ck(action,new String[] {"grilled"})&&ck(action, new String[] {"cheese"})){
-            System.out.println("MiniWag: Test Dialouge");
+            System.out.println("MiniWag: Test Dialogue");
         }
         else{
         }
