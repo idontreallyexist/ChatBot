@@ -5,7 +5,7 @@ public class App {
     public static void main(String[] args) throws Exception {
         clearScreen();
         Scanner input = new Scanner(System.in);
-        System.out.println("MiniWag: Hello and welcome to Sandwich Emperor! What do you want today?");
+        System.out.println("MiniWag: Hello and welcome to Sandwich Emperor! What do you want today? Do you need a menu?");
         System.out.println("Type 'quit' to exit the conversation");
         while(true){
             String action = input.nextLine();
@@ -38,7 +38,7 @@ public class App {
                     System.out.println("The Whyaburger: $18");
                     String action2 = input.nextLine();
                     clearScreen();
-                    if(action.toLowerCase().equals("quit")){
+                    if(action2.toLowerCase().equals("quit")){
                         break;
                     }
                     foodResponse(action);
@@ -61,6 +61,8 @@ public class App {
         if(ck(action, new String[] {"what"})&&ck(action,new String[] {"grilled"})&&ck(action, new String[] {"cheese"})){
             System.out.println("MiniWag: Test Dialouge");
         }
+        else{
+        }
     }
     public static void randomResponse(){
         int num = (int)(Math.random()*4);
@@ -75,6 +77,20 @@ public class App {
         }
         else if(num==3){
             System.out.println("MiniWag: Not sure what you're trying to say, do you want a menu?");
+        }
+    }
+    public static void randomResponse2(){
+        int num = (int)(Math.random()*3);
+        if(num==0){
+            System.out.println("I don't know what you are saying");
+            System.out.println("If you need to know anything about the menu, then just ask about it");
+        }
+        else if(num==1){
+            System.out.println("I don't think i understand, if you want some info about any item on the menu,");
+            System.out.println("Just ask about it, or maybe you want to buy something?");
+        }
+        else{
+            System.out.println("Uhh sorry, but I didn't get that, do you want to buy something?");
         }
     }
     public static boolean ck(String input, String[] keywords){
