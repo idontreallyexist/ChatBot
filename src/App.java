@@ -27,15 +27,15 @@ public class App {
                 while(true){
                     System.out.println("MiniWag: Sure! Here is the menu:");
                     System.out.println("Normal Grilled Cheese Sandwich: $7");
-                    System.out.println("The Stunner: $50");
-                    System.out.println("Large Mike: $18");
-                    System.out.println("0.1133981 Kilogramer: $30");
+                    System.out.println("The Stunner: $40");
+                    System.out.println("Large Mike: $15");
+                    System.out.println("0.1133981 Kilogramer: $25");
                     System.out.println("Solid Gold Brick: $18,000");
                     System.out.println("Canada: $2,000,000,000,000,000");
                     System.out.println("Spongebob: $0.62");
                     System.out.println("World Peace: $1.79769314e+308");
                     System.out.println("Spicy Chicken Sandwich: $10");
-                    System.out.println("The Whyaburger: $22");
+                    System.out.println("The Whyaburger: $18");
                     String action2 = input.nextLine();
                     clearScreen();
                     if(action.toLowerCase().equals("quit")){
