@@ -60,8 +60,6 @@ public class App {
     public static void foodResponse(String action){
         if(ck(action, new String[] {"what"})&&ck(action,new String[] {"grilled"})&&ck(action, new String[] {"cheese"})){
             System.out.println("MiniWag: Test Dialouge");
-            Scanner input = new Scanner(System.in);
-            String action2 = input.nextLine();
         }
     }
     public static void randomResponse(){
