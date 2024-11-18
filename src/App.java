@@ -2,6 +2,9 @@ import java.util.Scanner;
 public class App {
     static int mood = 80;
     static double money = 15;
+    static Food[] menu = {new Food(7.0,"Normal Grilled Cheese",
+    new String[] {"MiniWag: Ahh yes our famous normal grilled cheese sandwich! Unlike Lunchables, we use real cheese.",
+    "Look, drip, no stick! I like my grilled cheese drippy bruh"})};
     public static void main(String[] args) throws Exception {
         clearScreen();
         Scanner input = new Scanner(System.in);
@@ -58,8 +61,38 @@ public class App {
         }
     }
     public static void foodResponse(String action){
-        if(ck(action, new String[] {"what"})&&ck(action,new String[] {"grilled"})&&ck(action, new String[] {"cheese"})){
-            System.out.println("MiniWag: Test Dialogue");
+        if(ck(action, new String[] {"what"})){
+            if(ck(action,new String[] {"grilled"})&&ck(action, new String[] {"cheese"})){
+                menu[0].printDesc();
+            }
+            else if(ck(action,new String[] {"stunner"})){
+                System.out.println("MiniWag: ");
+            }
+            else if(ck(action,new String[] {"large"})&&ck(action,new String[]{"mike"})){
+                System.out.println("MiniWag: ");
+            }
+            else if(ck(action,new String[] {"kilogramer"})){
+                System.out.println("MiniWag: ");
+            }
+            else if(ck(action,new String[] {"gold"})||ck(action,new String[] {"brick"})){
+                System.out.println("MiniWag: ");
+            }
+            else if(ck(action,new String[] {"canada"})){
+                System.out.println("MiniWag: ");
+            }
+            else if(ck(action,new String[] {"spongebob"})){
+                System.out.println("MiniWag: ");
+            }
+            else if(ck(action,new String[] {"world"})&&ck(action,new String[] {"peace"})){
+                System.out.println("MiniWag: ");
+            }
+            else if(ck(action,new String[] {"chicken"})&&ck(action,new String[] {"sandwich"})){
+                System.out.println("MiniWag: ");
+            }
+            else if(ck(action,new String[] {"whyaburger"})){
+                System.out.println("MiniWag: ");
+            }
+            
         }
         else{
         }
@@ -100,5 +133,26 @@ public class App {
             }
         }
         return false;
+    }
+}
+class Food{
+    private double cost;
+    private String name;
+    private String[] decription;
+    Food(double c, String n ,String[] d){
+        cost=c;
+        name=n;
+        decription=d;
+    }
+    double getCost(){
+        return cost;
+    }
+    String getName(){
+        return name;
+    }
+    void printDesc(){
+        for(String i: decription){
+            System.out.println(i);
+        }
     }
 }
