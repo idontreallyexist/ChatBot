@@ -2,18 +2,18 @@ import java.util.Scanner;
 public class App {
     static int mood = 80;
     static double money = 15;
-    static Food[] menu = {new Food(7.0,"Normal Grilled Cheese",
+    static Food[] menu = {new Food(7.0,"grilled cheese",
     new String[] {"MiniWag: Ahh yes our famous normal grilled cheese sandwich! Unlike Lunchables, we use real cheese.",
     "Look, drip, no stick! I like my grilled cheese drippy bruh"}),
-    new Food(40.0,"The Stunner",new String[] {}),
-    new Food(15.0,"Large Mike",new String[] {}),
-    new Food(25.0,"0.1133981 Kilogramer",new String[] {}),
-    new Food(18000.0,"Solid Gold Brick",new String[] {}),
-    new Food(2*Math.pow(10,15),"Canada",new String[] {}),
-    new Food(0.62,"Spongebob",new String[] {}),
-    new Food(Math.pow(2,1023)*1.99999999,"World Peace",new String[] {}),
-    new Food(10.0,"Spicy Chicken Sandwich",new String[] {}),
-    new Food(18.0,"The Whyaburger",new String[] {}),};
+    new Food(40.0,"stunner",new String[] {}),
+    new Food(15.0,"large mike",new String[] {}),
+    new Food(25.0,"kilogramer",new String[] {}),
+    new Food(18000.0,"gold brick",new String[] {}),
+    new Food(2*Math.pow(10,15),"canada",new String[] {}),
+    new Food(0.62,"spongebob",new String[] {}),
+    new Food(Math.pow(2,1023)*1.99999999,"world peace",new String[] {}),
+    new Food(10.0,"chicken sandwich",new String[] {}),
+    new Food(18.0,"whyaburger",new String[] {}),};
     public static void main(String[] args) throws Exception {
         clearScreen();
         Scanner input = new Scanner(System.in);
