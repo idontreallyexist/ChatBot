@@ -1,19 +1,33 @@
 import java.util.Scanner;
 public class App {
     static int mood = 80;
-    static double money = 15;
+    static double money = 15;    
     static Food[] menu = {new Food(7.0,"grilled cheese",
-    new String[] {"MiniWag: Ahh yes our famous normal grilled cheese sandwich! Unlike Lunchables, we use real cheese.",
-    "Look, drip, no stick! I like my grilled cheese drippy bruh"}),
-    new Food(40.0,"stunner",new String[] {}),
-    new Food(15.0,"large mike",new String[] {}),
-    new Food(25.0,"kilogramer",new String[] {}),
-    new Food(18000.0,"gold brick",new String[] {}),
-    new Food(2*Math.pow(10,15),"canada",new String[] {}),
-    new Food(0.62,"spongebob",new String[] {}),
-    new Food(Math.pow(2,1023)*1.99999999,"world peace",new String[] {}),
-    new Food(10.0,"chicken sandwich",new String[] {}),
-    new Food(18.0,"whyaburger",new String[] {}),};
+    new String[] {"MiniWag: So you want to know about the", "Normal Grilled Cheese Sandwich?", 
+    "Unlike Lunchables, we use real cheese.","Look, drip, versus stick.",
+    "In the words of the wise philosopher Logan Paul,", "I like my grilled cheese drippy bruh."}),
+    new Food(40.0,"stunner",new String[] {"Note to any lawyers,","This is not in any way equal to a Whopper.",
+    "Neither is this plagiarism.","Any resemblance to other burgers,",
+    "Fictional or living,","Is entirely a coincidence."}),
+    new Food(15.0,"large mike",new String[] {"I’m going to be completely honest,","We don’t even make these.",
+    "If you order this we’ll just send one of","Our delivery guys to pick it up from",
+    "MikeDonalds and repackage it in or wrapping.","If you notice a bite, that’s because",
+    "Sometimes they get a little hungry on the way"}),
+    new Food(25.0,"kilogramer",new String[] {"Convert that to pounds.","Literally.","All Americans do is eat.",
+    "The metric system is the best.","Europe is the best."}),
+    new Food(18000.0,"gold brick",new String[] {"Pros:","- Retains Value","- Shiny","- Can be made into various objects",
+    "Cons:","- Heavy","- Will get you robbed","- Tastes like metal"}),
+    new Food(2*Math.pow(10,15),"canada",new String[] {"Wikipedia can probably","Explain it better than I can."}),
+    new Food(0.62,"spongebob",new String[] {"This may be the best or worst","Purchase of your life.",
+    "I’m just saying,","If you play clarinet and are a squid,","I would avoid the purchase."}),
+    new Food(Math.pow(2,1023)*1.99999999,"world peace",new String[] {"I’m pretty sure you can’t get that much money.",
+    "Like it literally hits the integer limit and you’d","Be stuck washing dishes for eternity.",
+    "Not that I would sell it to you,","Even if you had enough."}),
+    new Food(10.0,"chicken sandwich",new String[] {"This is actually different","From the slop they serve at Amador",
+    "For one, we use actual chicken,","Not monkey knees grinded",
+    "With (2R,3S,4R,5R)-2,3,4,5,6-Pentahydroxyhexanal.","(Also known as Glucose)"}),
+    new Food(18.0,"whyaburger",new String[] {"Why should you buy this?","Why not?"})};
+    static int[] order = new int[10];
     public static void main(String[] args) throws Exception {
         clearScreen();
         Scanner input = new Scanner(System.in);
@@ -35,9 +49,9 @@ public class App {
     public static void menuDialogue(String action){
         if(ck(action,new String[] {"menu"})){
             if(money>=10){
+                System.out.println("MiniWag: Sure! Here is the menu:");
                 Scanner input = new Scanner(System.in);
                 while(true){
-                    System.out.println("MiniWag: Sure! Here is the menu:");
                     System.out.println("Normal Grilled Cheese Sandwich: $7");
                     System.out.println("The Stunner: $40");
                     System.out.println("Large Mike: $15");
@@ -70,40 +84,51 @@ public class App {
         }
     }
     public static void foodResponse(String action){
-        if(ck(action, new String[] {"what"})){
-            if(ck(action,new String[] {"grilled"})&&ck(action, new String[] {"cheese"})){
+            if(ck(action, new String[] {"what"})&&ck(action,new String[] {"grilled"})&&ck(action, new String[] {"cheese"})){
                 menu[0].printDesc();
             }
-            else if(ck(action,new String[] {"stunner"})){
-                System.out.println("MiniWag: ");
+            else if(ck(action, new String[] {"what"})&&ck(action,new String[] {"stunner"})){
+                menu[1].printDesc();
             }
-            else if(ck(action,new String[] {"large"})&&ck(action,new String[]{"mike"})){
-                System.out.println("MiniWag: ");
+            else if(ck(action, new String[] {"what"})&&ck(action,new String[] {"large"})&&ck(action,new String[]{"mike"})){
+                menu[2].printDesc();
             }
-            else if(ck(action,new String[] {"kilogramer"})){
-                System.out.println("MiniWag: ");
+            else if(ck(action, new String[] {"what"})&&ck(action,new String[] {"kilogramer"})){
+                menu[3].printDesc();
             }
-            else if(ck(action,new String[] {"gold"})||ck(action,new String[] {"brick"})){
-                System.out.println("MiniWag: ");
+            else if(ck(action, new String[] {"what"})&&ck(action,new String[] {"gold"})||ck(action,new String[] {"brick"})){
+                menu[4].printDesc();
             }
-            else if(ck(action,new String[] {"canada"})){
-                System.out.println("MiniWag: ");
+            else if(ck(action, new String[] {"what"})&&ck(action,new String[] {"canada"})){
+                menu[5].printDesc();
             }
-            else if(ck(action,new String[] {"spongebob"})){
-                System.out.println("MiniWag: ");
+            else if(ck(action, new String[] {"what"})&&ck(action,new String[] {"spongebob"})){
+                menu[6].printDesc();
             }
-            else if(ck(action,new String[] {"world"})&&ck(action,new String[] {"peace"})){
-                System.out.println("MiniWag: ");
+            else if(ck(action, new String[] {"what"})&&ck(action,new String[] {"world"})&&ck(action,new String[] {"peace"})){
+                menu[7].printDesc();
             }
-            else if(ck(action,new String[] {"chicken"})&&ck(action,new String[] {"sandwich"})){
-                System.out.println("MiniWag: ");
+            else if(ck(action, new String[] {"what"})&&ck(action,new String[] {"chicken"})&&ck(action,new String[] {"sandwich"})){
+                menu[8].printDesc();
             }
-            else if(ck(action,new String[] {"whyaburger"})){
-                System.out.println("MiniWag: ");
+            else if(ck(action, new String[] {"what"})&&ck(action,new String[] {"whyaburger"})){
+                menu[9].printDesc();
             }
-            
+        else if(ck(action, new String[] {"buy","take","have","grab"})){
+            clearScreen();
+            System.out.println("MiniWag: Okay, so let me get this straight, you want");
+            for(int i=0; i<menu.length; i++){
+                if(ck(action,new String[] {menu[i].getName()})){
+                    order[i]++;
+                    System.out.println("a "+menu[i].getName());
+                }
+            }
+            Scanner input = new Scanner(System.in);
+            System.out.println("Correct?");
+            String action2 = input.nextLine();
         }
         else{
+            randomResponse2();
         }
     }
     public static void randomResponse(){
