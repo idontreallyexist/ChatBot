@@ -31,12 +31,12 @@ public class App {
                             "Like it literally hits the integer limit and you’d",
                             "Be stuck washing dishes for eternity.",
                             "Not that I would sell it to you,", "Even if you had enough." }),
-            new Food(10.0, "chicken",
+            new Food(10.0, "chicken sandwich",
                     new String[] { "This is actually different", "From the slop they serve at Amador",
                             "For one, we use actual chicken,", "Not monkey knees grinded",
                             "With (2R,3S,4R,5R)-2,3,4,5,6-Pentahydroxyhexanal.", "(Also known as Glucose)" }),
             new Food(18.0, "whyaburger", new String[] { "Why should you buy this?", "Why not?" }) };
-    static int[] order = new int[10];
+    static int[] order = new int[menu.length];
 
     public static void main(String[] args) throws Exception {
         clearScreen();
@@ -50,7 +50,10 @@ public class App {
             if (action.toLowerCase().equals("quit")) {
                 break;
             }
-            menuDialogue(action);
+            boolean flag=menuDialogue(action);
+            if(flag){
+                break;
+            }
         }
     }
 
@@ -59,7 +62,7 @@ public class App {
         System.out.flush();
     }
 
-    public static void menuDialogue(String action) {
+    public static boolean menuDialogue(String action) {
         if (ck(action, new String[] { "menu" })) {
             if (money >= 10) {
                 System.out.println("MiniWag: Sure! Here is the menu:");
@@ -78,9 +81,10 @@ public class App {
                     String action2 = input.nextLine();
                     clearScreen();
                     if (action2.toLowerCase().equals("quit")) {
-                        break;
+                        return true;
                     }
-                    foodResponse(action2);
+                    boolean flag=foodResponse(action2);
+                    return flag;
                 }
             } else {
                 System.out.println("MiniWag: Wait hold on, you don't have any money!");
@@ -92,9 +96,10 @@ public class App {
         } else {
             randomResponse();
         }
+        return false;
     }
 
-    public static void foodResponse(String action) {
+    public static boolean foodResponse(String action) {
         Scanner input = new Scanner(System.in);
         if (ck(action, new String[] { "what" }) && ck(action, new String[] { "grilled" })
                 && ck(action, new String[] { "cheese" })) {
@@ -131,19 +136,30 @@ public class App {
         else if (ck(action, new String[] { "what" }) && ck(action, new String[] { "whyaburger" })) {
             menu[9].printDesc();
         } 
-        else if (ck(action, new String[] { "buy", "take", "have", "grab" })) {
-            System.out.println("MiniWag: Oh yeah, I don't take orders for more than one of anything");
+        else if (ck(action, new String[] { "buy", "take", "have", "grab", "want"})) {
+            System.out.println("MiniWag: Oh yeah, I don't take orders for more than one of any item");
             System.out.println("MiniWag: Im not here to give yall obesity");
             System.out.println("MiniWag: Anyways, let me get this straight, you want");
             for (int i = 0; i < menu.length; i++) {
                 if (ck(action, new String[] { menu[i].getName() })) {
                     order[i]++;
-                    System.out.println("a " + menu[i].getName());
+                    System.out.println("A " + menu[i].getName());
                 }
             }
             System.out.println("Correct?");
             String action2 = input.nextLine();
-            clearScreen();
+            int flag = purchaseResponse(action2,action);
+            if(flag==2){
+                clearScreen();
+                System.out.println("You ended with $"+money);
+                System.out.println("You bought");
+                for(int i=0; i<order.length; i++){
+                    if(order[i]==1){
+                        System.out.println("A " + menu[i].getName());
+                    }
+                }
+                return true;
+            }
         } 
         else {
             randomResponse2();
@@ -151,18 +167,42 @@ public class App {
         if(ck(action,new String[] {"what"})){
             System.out.println("Type anything else to continue");
             String action2 = input.nextLine();
-            purchaseResponse(action2);
             clearScreen();
         }
+        return false;
     }
 
-    public static void purchaseResponse(String action){
-        if(ck(action, new String[] {"no","not"})){
-            
+    public static int purchaseResponse(String action, String pastAction){
+        int flag=0;
+        while(flag==0){
+            if(ck(action, new String[] {"no","not"})){
+                System.out.println("MiniWag: Oh, sorry then, mind repeating your order?");
+                flag=1;
+            }
+            else if(ck(action, new String[] {"yes","correct"})){
+                double priceSum=0.0;
+                for(int i=0; i<order.length; i++){
+                    priceSum+=order[i]*menu[i].getCost();
+                }
+                System.out.println("MiniWag: Alright, that will be $"+priceSum);
+                if(priceSum>money){
+                    System.out.println("MiniWag: Wait! You don't even have the money!");
+                    System.out.println("MiniWag: Buy something thats within your budget buddy");
+                    flag=1;
+                }
+                else{
+                    System.out.println("MiniWag: Alright, its done! Come again soon, or don't");
+                    money-=priceSum;
+                    flag=2;
+                }
+            }
+            else{
+                randomResponse3();
+                clearScreen();
+                foodResponse(pastAction);
+            }
         }
-        else if(ck(action, new String[] {"yes","correct"})){
-
-        }
+        return flag;
     }
 
     public static void randomResponse() {
@@ -181,15 +221,28 @@ public class App {
     public static void randomResponse2() {
         int num = (int) (Math.random() * 3);
         if (num == 0) {
-            System.out.println("I don't know what you are saying");
-            System.out.println("If you need to know anything about the menu, then just ask about it");
+            System.out.println("MiniWag: I don't know what you are saying");
+            System.out.println("MiniWag: If you need to know anything about the menu, then just ask about it");
         } 
         else if (num == 1) {
-            System.out.println("I don't think i understand, if you want some info about any item on the menu,");
-            System.out.println("Just ask about it, or maybe you want to buy something?");
+            System.out.println("MiniWag: I don't think i understand, if you want some info about any item on the menu,");
+            System.out.println("MiniWag: Just ask about it, or maybe you want to buy something?");
         } 
         else if(num==2) {
-            System.out.println("Uhh sorry, but I didn't get that, do you want to buy something?");
+            System.out.println("MiniWag: Uhh sorry, but I didn't get that, do you want to buy something?");
+        }
+    }
+    
+    public static void randomResponse3(){
+        int num = (int) (Math.random() * 3);
+        if(num==0){
+            System.out.println("MiniWag: Buddy, its a yes or no question, answer it properly");
+        }
+        else if(num==1){
+            System.out.println("MiniWag: Hey, uhh answer my question properly");
+        }
+        else if(num==2){
+            System.out.println("MiniWag: How hard is it for you to say yes or no?");
         }
     }
 
