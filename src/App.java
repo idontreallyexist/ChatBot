@@ -115,8 +115,7 @@ public class App {
         else if (ck(action, new String[] { "what" }) && ck(action, new String[] { "kilogramer" })) {
             menu[3].printDesc();
         } 
-        else if (ck(action, new String[] { "what" }) && (ck(action, new String[] { "gold" })
-                || ck(action, new String[] { "brick" }))) {
+        else if (ck(action, new String[] { "what" }) && ck(action, new String[] { "gold","brick" })) {
             menu[4].printDesc();
         } 
         else if (ck(action, new String[] { "what" }) && ck(action, new String[] { "canada" })) {
