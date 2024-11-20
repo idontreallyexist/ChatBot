@@ -11,7 +11,7 @@ public class App {
                     new String[] { "Note to any lawyers,", "This is not in any way equal to a Whopper.",
                             "Neither is this plagiarism.", "Any resemblance to other burgers,",
                             "Fictional or living,", "Is entirely a coincidence." }),
-            new Food(15.0, "large mike",
+            new Food(15.0, "mike",
                     new String[] { "I’m going to be completely honest,", "We don’t even make these.",
                             "If you order this we’ll just send one of", "Our delivery guys to pick it up from",
                             "MikeDonalds and repackage it in or wrapping.", "If you notice a bite, that’s because",
@@ -31,7 +31,7 @@ public class App {
                             "Like it literally hits the integer limit and you’d",
                             "Be stuck washing dishes for eternity.",
                             "Not that I would sell it to you,", "Even if you had enough." }),
-            new Food(10.0, "chicken sandwich",
+            new Food(10.0, "chicken",
                     new String[] { "This is actually different", "From the slop they serve at Amador",
                             "For one, we use actual chicken,", "Not monkey knees grinded",
                             "With (2R,3S,4R,5R)-2,3,4,5,6-Pentahydroxyhexanal.", "(Also known as Glucose)" }),
@@ -80,7 +80,7 @@ public class App {
                     if (action2.toLowerCase().equals("quit")) {
                         break;
                     }
-                    foodResponse(action);
+                    foodResponse(action2);
                 }
             } else {
                 System.out.println("MiniWag: Wait hold on, you don't have any money!");
@@ -95,6 +95,7 @@ public class App {
     }
 
     public static void foodResponse(String action) {
+        Scanner input = new Scanner(System.in);
         if (ck(action, new String[] { "what" }) && ck(action, new String[] { "grilled" })
                 && ck(action, new String[] { "cheese" })) {
             menu[0].printDesc();
@@ -109,8 +110,8 @@ public class App {
         else if (ck(action, new String[] { "what" }) && ck(action, new String[] { "kilogramer" })) {
             menu[3].printDesc();
         } 
-        else if (ck(action, new String[] { "what" }) && ck(action, new String[] { "gold" })
-                || ck(action, new String[] { "brick" })) {
+        else if (ck(action, new String[] { "what" }) && (ck(action, new String[] { "gold" })
+                || ck(action, new String[] { "brick" }))) {
             menu[4].printDesc();
         } 
         else if (ck(action, new String[] { "what" }) && ck(action, new String[] { "canada" })) {
@@ -131,20 +132,36 @@ public class App {
             menu[9].printDesc();
         } 
         else if (ck(action, new String[] { "buy", "take", "have", "grab" })) {
-            clearScreen();
-            System.out.println("MiniWag: Okay, so let me get this straight, you want");
+            System.out.println("MiniWag: Oh yeah, I don't take orders for more than one of anything");
+            System.out.println("MiniWag: Im not here to give yall obesity");
+            System.out.println("MiniWag: Anyways, let me get this straight, you want");
             for (int i = 0; i < menu.length; i++) {
                 if (ck(action, new String[] { menu[i].getName() })) {
                     order[i]++;
                     System.out.println("a " + menu[i].getName());
                 }
             }
-            Scanner input = new Scanner(System.in);
             System.out.println("Correct?");
             String action2 = input.nextLine();
+            clearScreen();
         } 
         else {
             randomResponse2();
+        }
+        if(ck(action,new String[] {"what"})){
+            System.out.println("Type anything else to continue");
+            String action2 = input.nextLine();
+            purchaseResponse(action2);
+            clearScreen();
+        }
+    }
+
+    public static void purchaseResponse(String action){
+        if(ck(action, new String[] {"no","not"})){
+            
+        }
+        else if(ck(action, new String[] {"yes","correct"})){
+
         }
     }
 
@@ -166,10 +183,12 @@ public class App {
         if (num == 0) {
             System.out.println("I don't know what you are saying");
             System.out.println("If you need to know anything about the menu, then just ask about it");
-        } else if (num == 1) {
+        } 
+        else if (num == 1) {
             System.out.println("I don't think i understand, if you want some info about any item on the menu,");
             System.out.println("Just ask about it, or maybe you want to buy something?");
-        } else {
+        } 
+        else if(num==2) {
             System.out.println("Uhh sorry, but I didn't get that, do you want to buy something?");
         }
     }
