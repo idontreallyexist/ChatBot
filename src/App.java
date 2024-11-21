@@ -150,11 +150,11 @@ public class App {
             System.out.println("Correct?");
             String action2 = input.nextLine();
             int flag = purchaseResponse(action2,action);
-            if (flag==1){
+            if (flag==2){
                 clearScreen();
                 menuDialogue("menu");
             }
-            else if(flag==2){
+            else if(flag==3){
                 clearScreen();
                 System.out.println("You ended with $"+money);
                 System.out.println("You bought");
@@ -182,7 +182,7 @@ public class App {
         while(flag==0){
             if(ck(action, new String[] {"no","not"})){
                 System.out.println("MiniWag: Oh, sorry then, mind repeating your order?");
-                flag=1;
+                flag=2;
             }
             else if(ck(action, new String[] {"yes","correct"})){
                 double priceSum=0.0;
@@ -198,7 +198,7 @@ public class App {
                 else{
                     System.out.println("MiniWag: Alright, its done! Come again soon, or don't");
                     money-=priceSum;
-                    flag=2;
+                    flag=3;
                 }
             }
             else{
