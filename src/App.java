@@ -19,7 +19,7 @@ public class App {
             new Food(25.0, "kilogramer",
                     new String[] { "Convert that to pounds.", "Literally.", "All Americans do is eat.",
                             "The metric system is the best.", "Europe is the best." }),
-            new Food(18000.0, "gold brick",
+            new Food(13170.0, "gold brick",
                     new String[] { "Pros:", "- Retains Value", "- Shiny", "- Can be made into various objects",
                             "Cons:", "- Heavy", "- Will get you robbed", "- Tastes like metal" }),
             new Food(2 * Math.pow(10, 15), "canada",
@@ -71,7 +71,7 @@ public class App {
                     System.out.println("The Stunner: $40");
                     System.out.println("Large Mike: $15");
                     System.out.println("0.1133981 Kilogramer: $25");
-                    System.out.println("Solid Gold Brick: $18,000");
+                    System.out.println("Solid Gold Brick: $13,170");
                     System.out.println("Canada: $2,000,000,000,000,000");
                     System.out.println("Spongebob: $0.62");
                     System.out.println("World Peace: $1.79769314e+308");
