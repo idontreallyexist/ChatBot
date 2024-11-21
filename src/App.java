@@ -41,8 +41,7 @@ public class App {
     public static void main(String[] args) throws Exception {
         clearScreen();
         Scanner input = new Scanner(System.in);
-        System.out
-                .println("MiniWag: Hello and welcome to Sandwich Emperor! What do you want today? Do you need a menu?");
+        System.out.println("MiniWag: Hello and welcome to Sandwich Emperor! What do you want today? Do you need a menu?");
         System.out.println("Type 'quit' to exit the conversation");
         while (true) {
             String action = input.nextLine();
