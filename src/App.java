@@ -147,7 +147,11 @@ public class App {
             System.out.println("Correct?");
             String action2 = input.nextLine();
             int flag = purchaseResponse(action2,action);
-            if(flag==2){
+            if (flag==1){
+                clearScreen();
+                menuDialogue("menu");
+            }
+            else if(flag==2){
                 clearScreen();
                 System.out.println("You ended with $"+money);
                 System.out.println("You bought");
