@@ -78,12 +78,15 @@ public class App {
                     System.out.println("World Peace: $1.79769314e+308");
                     System.out.println("Spicy Chicken Sandwich: $10");
                     System.out.println("The Whyaburger: $18");
+                    boolean flag=false;
                     String action2 = input.nextLine();
+                    flag=foodResponse(action2);
+                    while(!flag)
+                        menuDialogue("menu");
                     clearScreen();
                     if (action2.toLowerCase().equals("quit")) {
                         return true;
                     }
-                    boolean flag=foodResponse(action2);
                     return flag;
                 }
             } 
@@ -104,38 +107,38 @@ public class App {
 
     public static boolean foodResponse(String action) {
         Scanner input = new Scanner(System.in);
-        if (ck(action, new String[] { "what" }) && ck(action, new String[] { "grilled" })
+        if (ck(action, new String[] { "what","?" }) && ck(action, new String[] { "grilled" })
                 && ck(action, new String[] { "cheese" })) {
             menu[0].printDesc();
         } 
-        else if (ck(action, new String[] { "what" }) && ck(action, new String[] { "stunner" })) {
+        else if (ck(action, new String[] { "what","?" }) && ck(action, new String[] { "stunner" })) {
             menu[1].printDesc();
         } 
-        else if (ck(action, new String[] { "what" }) && ck(action, new String[] { "large" })
+        else if (ck(action, new String[] { "what","?" }) && ck(action, new String[] { "large" })
                 && ck(action, new String[] { "mike" })) {
             menu[2].printDesc();
         } 
-        else if (ck(action, new String[] { "what" }) && ck(action, new String[] { "kilogramer" })) {
+        else if (ck(action, new String[] { "what","?" }) && ck(action, new String[] { "kilogramer" })) {
             menu[3].printDesc();
         } 
-        else if (ck(action, new String[] { "what" }) && ck(action, new String[] { "gold","brick" })) {
+        else if (ck(action, new String[] { "what","?" }) && ck(action, new String[] { "gold","brick" })) {
             menu[4].printDesc();
         } 
-        else if (ck(action, new String[] { "what" }) && ck(action, new String[] { "canada" })) {
+        else if (ck(action, new String[] { "what","?" }) && ck(action, new String[] { "canada" })) {
             menu[5].printDesc();
         } 
-        else if (ck(action, new String[] { "what" }) && ck(action, new String[] { "spongebob" })) {
+        else if (ck(action, new String[] { "what","?" }) && ck(action, new String[] { "spongebob" })) {
             menu[6].printDesc();
         } 
-        else if (ck(action, new String[] { "what" }) && ck(action, new String[] { "world" })
+        else if (ck(action, new String[] { "what","?" }) && ck(action, new String[] { "world" })
                 && ck(action, new String[] { "peace" })) {
             menu[7].printDesc();
         } 
-        else if (ck(action, new String[] { "what" }) && ck(action, new String[] { "chicken" })
+        else if (ck(action, new String[] { "what","?" }) && ck(action, new String[] { "chicken" })
                 && ck(action, new String[] { "sandwich" })) {
             menu[8].printDesc();
         } 
-        else if (ck(action, new String[] { "what" }) && ck(action, new String[] { "whyaburger" })) {
+        else if (ck(action, new String[] { "what","?" }) && ck(action, new String[] { "whyaburger" })) {
             menu[9].printDesc();
         } 
         else if (ck(action, new String[] { "buy", "take", "have", "grab", "want"})) {
