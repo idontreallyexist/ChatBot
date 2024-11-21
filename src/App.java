@@ -67,6 +67,7 @@ public class App {
                 System.out.println("MiniWag: Sure! Here is the menu:");
                 Scanner input = new Scanner(System.in);
                 while (true) {
+                    System.out.println("You have $"+money);
                     System.out.println("Normal Grilled Cheese Sandwich: $7");
                     System.out.println("The Stunner: $40");
                     System.out.println("Large Mike: $15");
