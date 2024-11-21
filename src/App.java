@@ -195,8 +195,8 @@ public class App {
                 }
             }
             else{
-                randomResponse3();
                 clearScreen();
+                randomResponse3();
                 foodResponse(pastAction);
             }
         }
