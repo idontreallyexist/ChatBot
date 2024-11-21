@@ -85,14 +85,17 @@ public class App {
                     boolean flag=foodResponse(action2);
                     return flag;
                 }
-            } else {
+            } 
+            else {
                 System.out.println("MiniWag: Wait hold on, you don't have any money!");
                 System.out.println("MiniWag: Ask for money and do a minigame to get some");
             }
 
-        } else if (ck(action, new String[] { "money" })) {
+        } 
+        else if (ck(action, new String[] { "money" })) {
             clearScreen();
-        } else {
+        } 
+        else {
             randomResponse();
         }
         return false;
