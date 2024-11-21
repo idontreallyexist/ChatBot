@@ -1,8 +1,9 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class App {
     static int mood = 80;
-    static double money = 30000;
+    static double money = 0;
     static Food[] menu = { new Food(7.0, "grilled cheese",
             new String[] { "MiniWag: So you want to know about the", "Normal Grilled Cheese Sandwich?",
                     "Unlike Lunchables, we use real cheese.", "Look, drip, versus stick.",
@@ -64,31 +65,32 @@ public class App {
     public static boolean menuDialogue(String action) {
         if (ck(action, new String[] { "menu" })) {
             if (money >= 10) {
+                System.out.println("You have $"+money+"\n");
                 System.out.println("MiniWag: Sure! Here is the menu:");
+                System.out.println("MiniWag: If you need info about any item on the menu, just ask");
+                System.out.println("MiniWag: I'll take your order when you are ready'\n");
                 Scanner input = new Scanner(System.in);
-                while (true) {
-                    System.out.println("You have $"+money);
-                    System.out.println("Normal Grilled Cheese Sandwich: $7");
-                    System.out.println("The Stunner: $40");
-                    System.out.println("Large Mike: $15");
-                    System.out.println("0.1133981 Kilogramer: $25");
-                    System.out.println("Solid Gold Brick: $13,170");
-                    System.out.println("Canada: $2,000,000,000,000,000");
-                    System.out.println("Spongebob: $0.62");
-                    System.out.println("World Peace: $1.79769314e+308");
-                    System.out.println("Spicy Chicken Sandwich: $10");
-                    System.out.println("The Whyaburger: $18");
-                    boolean flag=false;
-                    String action2 = input.nextLine();
-                    flag=foodResponse(action2);
-                    while(!flag)
-                        menuDialogue("menu");
+                System.out.println("Normal Grilled Cheese Sandwich: $7");
+                System.out.println("The Stunner: $40");
+                System.out.println("Large Mike: $15");
+                System.out.println("0.1133981 Kilogramer: $25");
+                System.out.println("Solid Gold Brick: $13,170");
+                System.out.println("Canada: $2,000,000,000,000,000");
+                System.out.println("Spongebob: $0.62");
+                System.out.println("World Peace: $1.79769314e+308");
+                System.out.println("Spicy Chicken Sandwich: $10");
+                System.out.println("The Whyaburger: $18");
+                boolean flag=false;
+                String action2 = input.nextLine();
+                flag=foodResponse(action2);
+                while(!flag){
                     clearScreen();
-                    if (action2.toLowerCase().equals("quit")) {
-                        return true;
-                    }
-                    return flag;
+                    menuDialogue("menu");
                 }
+                if (action2.toLowerCase().equals("quit")) {
+                    return true;
+                }
+                return flag;
             } 
             else {
                 System.out.println("MiniWag: Wait hold on, you don't have any money!");
@@ -98,11 +100,115 @@ public class App {
         } 
         else if (ck(action, new String[] { "money" })) {
             clearScreen();
+            money+=dishwasher();
+            return false;
         } 
         else {
             randomResponse();
         }
         return false;
+    }
+
+    public static double dishwasher() {
+        String[] words = {
+            "absolutely", "amplified", "adventure", "beautiful", "brilliant", "courageous", "confident", "dangerous",
+            "difficult", "delighted", "education", "expensive", "fascinate", "fortunate", "frequent", "generosity",
+            "important", "incredible", "inspiration", "involvement", "involuntary", "nervously", "optimistic",
+            "perspective", "profoundly", "successful", "significant", "terrifying", "understand", "wonderfully",
+            "volunteer", "affection", "basketball", "chemistry", "culturally", "dangerous", "discovery", "enrollment",
+            "exquisite", "facilitate", "flattering", "harmonious", "incredible", "intelligent", "mysterious",
+            "satisfaction", "scientific", "scholarship", "surprising", "strengthen", "technique", "thoughtful",
+            "thrilling", "transform", "tolerantly", "tremendous", "uncovered", "willingly", "amplifies",
+            "consequence", "delighted", "explanation", "financially", "generously", "inspiration", "involvement",
+            "introduction", "magnificent", "notorious", "perception", "philosophy", "reputation", "sociology",
+            "substantial", "systematic", "theoretical", "unbelievable", "underestimate", "unpredictable", "unreliable",
+            "profound", "accomplish", "particular", "expectation", "emotional", "efficiency", "educational",
+            "difficulties", "expression", "connection", "accelerate", "backpacked", "believable", "celebration",
+            "conventional", "dynamically", "enthusiast", "extraordinary", "humorously", "historical", "originally",
+            "unraveling", "vocabulary", "voluntary", "exaggerate", "frequently", "favorable", "involves",
+            "intensive", "loyalty", "mechanisms", "situation", "strategy", "variation", "vocational", "sensitive",
+            "remembers", "politically", "sympathetic", "creativity", "economical", "involved", "foundation", "artificial",
+            "conclusion", "colleague", "celebration", "generation", "lifestyles", "motivating", "congratulate",
+            "mechanical", "projection", "provocative", "reliable", "sympathetically", "invisible", "renowned",
+            "adaptation", "transformation", "corruption", "separation", "attraction", "modification", "regulation",
+            "appreciated", "generations", "calculation", "initiation", "detonation", "legislation", "dedicated",
+            "recollection", "departure", "discovery", "negotiation", "subsequent", "reception", "interference",
+            "combination", "apprehension", "declaration", "fabrication", "proclamation", "introduction", "obligation",
+            "assistance", "clarification", "reservation", "satisfaction", "meditation", "survival", "explanation",
+            "adjustment", "examination", "acceleration", "entertainment", "representation", "clarification",
+            "destination", "consideration", "distraction", "tolerance", "contradiction", "legislation", "implementation",
+            "realization", "philosophical", "condensation", "situation", "adjustments", "frustration", "contribution",
+            "documentation", "comprehension", "contemplation", "misunderstanding", "introspection", "reflection",
+            "defensive", "clarity", "subordination", "dissatisfaction", "influence", "involvement", "questionnaire",
+            "disruption", "contradictory", "attraction", "librarian", "toleration", "restoration", "legislation",
+            "translation", "indifference", "excavation", "supplement", "proportion", "rationalization", "manifestation",
+            "production", "proposition", "illustration", "concentration", "clarifying", "celebration", "subtraction",
+            "classification", "consequences", "reorganization", "simplification", "destination", "transmission",
+            "accomplishment", "standardization", "appreciation", "ascertain", "nourishment", "concentration", "proficiency"
+        };
+       
+        double mg = 0.0;
+       
+        System.out.println("To get money, 'clean' the following words.");
+        System.out.println("");
+        System.out.println("Words will be given with two typos.");
+        System.out.println("");
+        System.out.println("Retype the word (case insensitive) with");
+        System.out.println("the typos fixed.");
+        System.out.println("");
+        System.out.println("If you get a word wrong, that word will be skipped");
+        System.out.println("and you will earn no money for that word.");
+        System.out.println("");
+        System.out.println("Type 'q' to quit.");
+       
+        Scanner input = new Scanner(System.in);
+        String guess = "";
+       
+        int streak = 0;
+       
+        while (!guess.equals("q")) {
+           
+            int cwi = dice(0, words.length-1);
+            String cw = words[cwi].toLowerCase();
+            int dwi1 = dice(0,cw.length()-1);
+            int dwi2 = dwi1;
+            while (dwi2==dwi1) {
+                dwi2 = dice(0,cw.length()-1);
+            }
+            if (dwi1>dwi2) {
+                int swap = dwi1;
+                dwi1 = dwi2;
+                dwi2 = swap;
+            }
+            String dw = cw.substring(0,dwi1)+"#"+cw.substring(dwi1+1,dwi2)+"#"+cw.substring(dwi2+1);
+           
+            System.out.println("Current streak: "+streak+" ("+totwo(Math.pow(1.5,streak))+"x multiplier)");
+            System.out.println("Total money gained: $"+mg);
+            System.out.println(dw);
+            guess = input.nextLine();
+            if ((guess.toLowerCase()).equals(words[cwi].toLowerCase())){
+                streak++;
+                mg+=totwo(2*Math.pow(1.5,streak));
+                System.out.println("");
+                System.out.println("Success! You gained $"+totwo(2*Math.pow(1.5,streak))+".");
+            } else if (!guess.equals("q")) {
+                streak=0;
+                System.out.println("");
+                System.out.println("Incorrect. Your streak of "+streak+" has been reset.");
+            }
+        }
+       
+        return mg;
+    }
+   
+    public static int dice(int a, int b) {
+        Random random = new Random();
+        return random.nextInt((b-a)+1)+a;
+    }
+   
+    public static double totwo(double d) {
+        d = Math.floor(d*100)/100.0;
+        return d;
     }
 
     public static boolean foodResponse(String action) {
@@ -231,14 +337,17 @@ public class App {
         int num = (int) (Math.random() * 3);
         if (num == 0) {
             System.out.println("MiniWag: I don't know what you are saying");
-            System.out.println("MiniWag: If you need to know anything about the menu, then just ask about it");
+            System.out.println("MiniWag: If you need to know anything about the menu, then just ask about it \n");
         } 
         else if (num == 1) {
             System.out.println("MiniWag: I don't think i understand, if you want some info about any item on the menu,");
             System.out.println("MiniWag: Just ask about it, or maybe you want to buy something?");
+            System.out.println("MiniWag: Make sure to clarify what you're trying to do, im not that smart \n");
         } 
         else if(num==2) {
             System.out.println("MiniWag: Uhh sorry, but I didn't get that, do you want to buy something?");
+            System.out.println("MiniWag: If so, make sure to clarify that you are buying something");
+            System.out.println("MiniWag: And not just saying the name of an item \n");
         }
     }
     
