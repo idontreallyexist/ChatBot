@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class App {
     static int mood = 80;
-    static double money = 0;
+    static double money = 15000;
     static Food[] menu = { new Food(7.0, "grilled cheese",
             new String[] { "MiniWag: So you want to know about the", "Normal Grilled Cheese Sandwich?",
                     "Unlike Lunchables, we use real cheese.", "Look, drip, versus stick.",
@@ -38,19 +38,21 @@ public class App {
                             "With (2R,3S,4R,5R)-2,3,4,5,6-Pentahydroxyhexanal.", "(Also known as Glucose)" }),
             new Food(18.0, "whyaburger", new String[] { "Why should you buy this?", "Why not?" }) };
     static int[] order = new int[menu.length];
-
+    static Scanner input = new Scanner(System.in);
     public static void main(String[] args) throws Exception {
         clearScreen();
-        Scanner input = new Scanner(System.in);
-        System.out.println("MiniWag: Hello and welcome to Sandwich Emperor! What do you want today? Do you need a menu?");
-        System.out.println("Type 'quit' to exit the conversation");
+        boolean flag=false;
         while (true) {
+            if(!flag){
+                System.out.println("MiniWag: Hello and welcome to Sandwich Emperor! What do you want today? Do you need a menu?");
+                System.out.println("Type 'quit' to exit the conversation");
+            }
             String action = input.nextLine();
             clearScreen();
             if (action.toLowerCase().equals("quit")) {
                 break;
             }
-            boolean flag=menuDialogue(action);
+            flag=menuDialogue(action,0);
             if(flag){
                 break;
             }
@@ -62,14 +64,18 @@ public class App {
         System.out.flush();
     }
 
-    public static boolean menuDialogue(String action) {
+    public static boolean menuDialogue(String action, int mode) {
         if (ck(action, new String[] { "menu" })) {
             if (money >= 10) {
                 System.out.println("You have $"+money+"\n");
-                System.out.println("MiniWag: Sure! Here is the menu:");
-                System.out.println("MiniWag: If you need info about any item on the menu, just ask");
-                System.out.println("MiniWag: I'll take your order when you are ready'\n");
-                Scanner input = new Scanner(System.in);
+                if(mode==0){
+                    System.out.println("MiniWag: Sure! Here is the menu:");
+                    System.out.println("MiniWag: If you need info about any item on the menu, just ask");
+                    System.out.println("MiniWag: I'll take your order when you are ready \n");
+                }
+                else{
+                    System.out.println("MiniWag: Oh, sorry then, mind repeating your order? \n");
+                }
                 System.out.println("Normal Grilled Cheese Sandwich: $7");
                 System.out.println("The Stunner: $40");
                 System.out.println("Large Mike: $15");
@@ -85,7 +91,7 @@ public class App {
                 flag=foodResponse(action2);
                 while(!flag){
                     clearScreen();
-                    menuDialogue("menu");
+                    menuDialogue("menu",0);
                 }
                 if (action2.toLowerCase().equals("quit")) {
                     return true;
@@ -101,6 +107,7 @@ public class App {
         else if (ck(action, new String[] { "money" })) {
             clearScreen();
             money+=dishwasher();
+            clearScreen();
             return false;
         } 
         else {
@@ -161,7 +168,6 @@ public class App {
         System.out.println("");
         System.out.println("Type 'q' to quit.");
        
-        Scanner input = new Scanner(System.in);
         String guess = "";
        
         int streak = 0;
@@ -212,7 +218,7 @@ public class App {
     }
 
     public static boolean foodResponse(String action) {
-        Scanner input = new Scanner(System.in);
+        clearScreen();
         if (ck(action, new String[] { "what","?" }) && ck(action, new String[] { "grilled" })
                 && ck(action, new String[] { "cheese" })) {
             menu[0].printDesc();
@@ -262,7 +268,7 @@ public class App {
             int flag = purchaseResponse(action2,action);
             if (flag==2){
                 clearScreen();
-                menuDialogue("menu");
+                menuDialogue("menu",1);
             }
             else if(flag==3){
                 clearScreen();
@@ -291,7 +297,6 @@ public class App {
         int flag=0;
         while(flag==0){
             if(ck(action, new String[] {"no","not"})){
-                System.out.println("MiniWag: Oh, sorry then, mind repeating your order?");
                 flag=2;
             }
             else if(ck(action, new String[] {"yes","correct"})){
@@ -331,6 +336,8 @@ public class App {
         } else if (num == 3) {
             System.out.println("MiniWag: Not sure what you're trying to say, do you want a menu?");
         }
+        System.out.println("Hit any key to continue");
+        String action=input.next();
     }
 
     public static void randomResponse2() {
@@ -349,6 +356,8 @@ public class App {
             System.out.println("MiniWag: If so, make sure to clarify that you are buying something");
             System.out.println("MiniWag: And not just saying the name of an item \n");
         }
+        System.out.println("Hit any key to continue");
+        String action=input.next();
     }
     
     public static void randomResponse3(){
@@ -362,6 +371,8 @@ public class App {
         else if(num==2){
             System.out.println("MiniWag: How hard is it for you to say yes or no?");
         }
+        System.out.println("Hit any key to continue");
+        String action=input.next();
     }
 
     public static boolean ck(String input, String[] keywords) {
