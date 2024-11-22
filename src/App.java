@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class App {
     static int mood = 80;
-    static double money = 15000;
+    static double money = 0;
     static Food[] menu = { new Food(7.0, "grilled cheese",
             new String[] { "MiniWag: So you want to know about the", "Normal Grilled Cheese Sandwich?",
                     "Unlike Lunchables, we use real cheese.", "Look, drip, versus stick.",
@@ -52,7 +52,7 @@ public class App {
             if (action.toLowerCase().equals("quit")) {
                 break;
             }
-            flag=menuDialogue(action,0);
+            flag=menuDialogue(action);
             if(flag){
                 break;
             }
@@ -64,18 +64,22 @@ public class App {
         System.out.flush();
     }
 
-    public static boolean menuDialogue(String action, int mode) {
+    public static void wait(int ms){
+        try{
+            Thread.sleep(ms);
+        }
+        catch(InterruptedException ex){
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    public static boolean menuDialogue(String action) {
         if (ck(action, new String[] { "menu" })) {
             if (money >= 10) {
                 System.out.println("You have $"+money+"\n");
-                if(mode==0){
-                    System.out.println("MiniWag: Sure! Here is the menu:");
-                    System.out.println("MiniWag: If you need info about any item on the menu, just ask");
-                    System.out.println("MiniWag: I'll take your order when you are ready \n");
-                }
-                else{
-                    System.out.println("MiniWag: Oh, sorry then, mind repeating your order? \n");
-                }
+                System.out.println("MiniWag: Sure! Here is the menu:");
+                System.out.println("MiniWag: If you need info about any item on the menu, just ask");
+                System.out.println("MiniWag: I'll take your order when you are ready \n");
                 System.out.println("Normal Grilled Cheese Sandwich: $7");
                 System.out.println("The Stunner: $40");
                 System.out.println("Large Mike: $15");
@@ -91,7 +95,7 @@ public class App {
                 flag=foodResponse(action2);
                 while(!flag){
                     clearScreen();
-                    menuDialogue("menu",0);
+                    menuDialogue("menu");
                 }
                 if (action2.toLowerCase().equals("quit")) {
                     return true;
@@ -268,7 +272,7 @@ public class App {
             int flag = purchaseResponse(action2,action);
             if (flag==2){
                 clearScreen();
-                menuDialogue("menu",1);
+                System.out.println("MiniWag: Oh, sorry then, mind repeating your order? \n");
             }
             else if(flag==3){
                 clearScreen();
