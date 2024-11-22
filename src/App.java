@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class App {
     static int mood = 80;
-    static double money = 0;
+    static double money = 15000;
     static Food[] menu = { new Food(7.0, "grilled cheese",
             new String[] { "MiniWag: So you want to know about the", "Normal Grilled Cheese Sandwich?",
                     "Unlike Lunchables, we use real cheese.", "Look, drip, versus stick.",
@@ -52,7 +52,7 @@ public class App {
             if (action.toLowerCase().equals("quit")) {
                 break;
             }
-            flag=menuDialogue(action);
+            flag=mainDialogue(action);
             if(flag){
                 break;
             }
@@ -73,41 +73,17 @@ public class App {
         }
     }
 
-    public static boolean menuDialogue(String action) {
+    public static boolean mainDialogue(String action){
+        boolean flag=false;
         if (ck(action, new String[] { "menu" })) {
             if (money >= 10) {
-                System.out.println("You have $"+money+"\n");
-                System.out.println("MiniWag: Sure! Here is the menu:");
-                System.out.println("MiniWag: If you need info about any item on the menu, just ask");
-                System.out.println("MiniWag: I'll take your order when you are ready \n");
-                System.out.println("Normal Grilled Cheese Sandwich: $7");
-                System.out.println("The Stunner: $40");
-                System.out.println("Large Mike: $15");
-                System.out.println("0.1133981 Kilogramer: $25");
-                System.out.println("Solid Gold Brick: $13,170");
-                System.out.println("Canada: $2,000,000,000,000,000");
-                System.out.println("Spongebob: $0.62");
-                System.out.println("World Peace: $1.79769314e+308");
-                System.out.println("Spicy Chicken Sandwich: $10");
-                System.out.println("The Whyaburger: $18");
-                boolean flag=false;
-                String action2 = input.nextLine();
-                flag=foodResponse(action2);
-                while(!flag){
-                    clearScreen();
-                    menuDialogue("menu");
-                }
-                if (action2.toLowerCase().equals("quit")) {
-                    return true;
-                }
-                return flag;
-            } 
+                flag=menuDialogue();
+            }
             else {
                 System.out.println("MiniWag: Wait hold on, you don't have any money!");
                 System.out.println("MiniWag: Ask for money and do a minigame to get some");
             }
-
-        } 
+        }
         else if (ck(action, new String[] { "money" })) {
             clearScreen();
             money+=dishwasher();
@@ -117,7 +93,35 @@ public class App {
         else {
             randomResponse();
         }
-        return false;
+        return flag;
+
+    }
+    public static boolean menuDialogue() {
+        System.out.println("You have $"+money+"\n");
+        System.out.println("MiniWag: Sure! Here is the menu:");
+        System.out.println("MiniWag: If you need info about any item on the menu, just ask");
+        System.out.println("MiniWag: I'll take your order when you are ready \n");
+        System.out.println("Normal Grilled Cheese Sandwich: $7");
+        System.out.println("The Stunner: $40");
+        System.out.println("Large Mike: $15");
+        System.out.println("0.1133981 Kilogramer: $25");
+        System.out.println("Solid Gold Brick: $13,170");
+        System.out.println("Canada: $2,000,000,000,000,000");
+        System.out.println("Spongebob: $0.62");
+        System.out.println("World Peace: $1.79769314e+308");
+        System.out.println("Spicy Chicken Sandwich: $10");
+        System.out.println("The Whyaburger: $18");
+        boolean flag=false;
+        String action = input.nextLine();
+        flag=foodResponse(action);
+        while(!flag){
+            clearScreen();
+            menuDialogue();
+        }
+        if (action.toLowerCase().equals("quit")) {
+            return true;
+        }
+        return flag;
     }
 
     public static double dishwasher() {
@@ -288,6 +292,7 @@ public class App {
         } 
         else {
             randomResponse2();
+            return false;
         }
         if(ck(action,new String[] {"what"})){
             System.out.println("Type anything else to continue");
