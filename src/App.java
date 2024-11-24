@@ -252,33 +252,36 @@ public class App {
             menu[9].printDesc();
         } 
         else if (ck(action, new String[] { "buy", "take", "have", "grab", "want"})) {
-            System.out.println("MiniWag: Oh yeah, I don't take orders for more than one of any item");
-            System.out.println("MiniWag: Im not here to give yall obesity");
-            System.out.println("MiniWag: Anyways, let me get this straight, you want");
-            for (int i = 0; i < menu.length; i++) {
-                if (ck(action, new String[] { menu[i].getName() })) {
-                    order[i]=1;
-                    System.out.println("A " + menu[i].getName());
-                }
-            }
-            System.out.println("Correct?");
-            String action2 = input.nextLine();
-            int flag = purchaseResponse(action2,action);
-            if (flag==2){
-                clearScreen();
-                System.out.println("MiniWag: Oh, sorry then, mind repeating your order? \n");
-                return false;
-            }
-            else if(flag==3){
-                clearScreen();
-                System.out.println("You ended with $"+money);
-                System.out.println("You bought");
-                for(int i=0; i<order.length; i++){
-                    if(order[i]==1){
+            int flag=0;
+            while(flag<2){
+                System.out.println("MiniWag: Oh yeah, I don't take orders for more than one of any item");
+                System.out.println("MiniWag: Im not here to give yall obesity");
+                System.out.println("MiniWag: Anyways, let me get this straight, you want");
+                for (int i = 0; i < menu.length; i++) {
+                    if (ck(action, new String[] { menu[i].getName() })) {
+                        order[i]=1;
                         System.out.println("A " + menu[i].getName());
                     }
                 }
-                return true;
+                System.out.println("Correct?");
+                String action2 = input.nextLine();
+                flag = purchaseResponse(action2,action);
+                if (flag==2){
+                    clearScreen();
+                    System.out.println("MiniWag: Oh, sorry then, mind repeating your order? \n");
+                    return false;
+                }
+                else if(flag==3){
+                    clearScreen();
+                    System.out.println("You ended with $"+money);
+                    System.out.println("You bought");
+                    for(int i=0; i<order.length; i++){
+                        if(order[i]==1){
+                            System.out.println("A " + menu[i].getName());
+                        }
+                    }
+                    return true;
+                }
             }
         } 
         else {
@@ -319,7 +322,7 @@ public class App {
             else{
                 clearScreen();
                 randomResponse3();
-                foodResponse(pastAction);
+                flag=1;
             }
         }
         return flag;
@@ -369,8 +372,6 @@ public class App {
         else if(num==2){
             System.out.println("MiniWag: How hard is it for you to say yes or no?");
         }
-        System.out.println("Hit any key to continue");
-        String action=input.next();
     }
 
     public static boolean ck(String input, String[] keywords) {
