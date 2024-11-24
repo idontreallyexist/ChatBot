@@ -64,19 +64,13 @@ public class App {
         System.out.flush();
     }
 
-    public static void wait(int ms){
-        try{
-            Thread.sleep(ms);
-        }
-        catch(InterruptedException ex){
-            Thread.currentThread().interrupt();
-        }
-    }
-
     public static boolean mainDialogue(String action){
         boolean flag=false;
         if (ck(action, new String[] { "menu" })) {
             if (money >= 10) {
+                System.out.println("MiniWag: Sure! Here is the menu:");
+                System.out.println("MiniWag: If you need info about any item on the menu, just ask");
+                System.out.println("MiniWag: I'll take your order when you are ready \n");
                 flag=menuDialogue();
             }
             else {
@@ -97,29 +91,25 @@ public class App {
 
     }
     public static boolean menuDialogue() {
-        System.out.println("You have $"+money+"\n");
-        System.out.println("MiniWag: Sure! Here is the menu:");
-        System.out.println("MiniWag: If you need info about any item on the menu, just ask");
-        System.out.println("MiniWag: I'll take your order when you are ready \n");
-        System.out.println("Normal Grilled Cheese Sandwich: $7");
-        System.out.println("The Stunner: $40");
-        System.out.println("Large Mike: $15");
-        System.out.println("0.1133981 Kilogramer: $25");
-        System.out.println("Solid Gold Brick: $13,170");
-        System.out.println("Canada: $2,000,000,000,000,000");
-        System.out.println("Spongebob: $0.62");
-        System.out.println("World Peace: $1.79769314e+308");
-        System.out.println("Spicy Chicken Sandwich: $10");
-        System.out.println("The Whyaburger: $18");
         boolean flag=false;
-        String action = input.nextLine();
-        flag=foodResponse(action);
         while(!flag){
+            System.out.println("You have $"+money+"\n");
+            System.out.println("Normal Grilled Cheese Sandwich: $7");
+            System.out.println("The Stunner: $40");
+            System.out.println("Large Mike: $15");
+            System.out.println("0.1133981 Kilogramer: $25");
+            System.out.println("Solid Gold Brick: $13,170");
+            System.out.println("Canada: $2,000,000,000,000,000");
+            System.out.println("Spongebob: $0.62");
+            System.out.println("World Peace: $1.79769314e+308");
+            System.out.println("Spicy Chicken Sandwich: $10");
+            System.out.println("The Whyaburger: $18");
+            String action = input.nextLine();
             clearScreen();
-            menuDialogue();
-        }
-        if (action.toLowerCase().equals("quit")) {
-            return true;
+            flag=foodResponse(action);
+            if (action.toLowerCase().equals("quit")) {
+                return true;
+            }
         }
         return flag;
     }
@@ -267,7 +257,7 @@ public class App {
             System.out.println("MiniWag: Anyways, let me get this straight, you want");
             for (int i = 0; i < menu.length; i++) {
                 if (ck(action, new String[] { menu[i].getName() })) {
-                    order[i]++;
+                    order[i]=1;
                     System.out.println("A " + menu[i].getName());
                 }
             }
@@ -277,6 +267,7 @@ public class App {
             if (flag==2){
                 clearScreen();
                 System.out.println("MiniWag: Oh, sorry then, mind repeating your order? \n");
+                return false;
             }
             else if(flag==3){
                 clearScreen();
@@ -365,8 +356,6 @@ public class App {
             System.out.println("MiniWag: If so, make sure to clarify that you are buying something");
             System.out.println("MiniWag: And not just saying the name of an item \n");
         }
-        System.out.println("Hit any key to continue");
-        String action=input.next();
     }
     
     public static void randomResponse3(){
