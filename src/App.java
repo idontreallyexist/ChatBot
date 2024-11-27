@@ -2,7 +2,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class App {
-    static double money = 30000;
+    static double money = 0;
     static Food[] menu = { new Food(7.0, "grilled cheese",
             new String[] { "MiniWag: So you want to know about the", "Normal Grilled Cheese Sandwich?",
                     "Unlike Lunchables, we use real cheese.", "Look, drip, versus stick.",
