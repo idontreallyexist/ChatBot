@@ -2,7 +2,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class App {
-    static double money = 0;
+    static double money = 30000;
     static Food[] menu = { new Food(7.0, "grilled cheese",
             new String[] { "MiniWag: So you want to know about the", "Normal Grilled Cheese Sandwich?",
                     "Unlike Lunchables, we use real cheese.", "Look, drip, versus stick.",
@@ -265,7 +265,10 @@ public class App {
                 System.out.println("Correct?");
                 String action2 = input.nextLine();
                 flag = purchaseResponse(action2,action);
-                if (flag==2){
+                if(flag==1){
+                    return false;
+                }
+                else if (flag==2){
                     clearScreen();
                     System.out.println("MiniWag: Oh, sorry then, mind repeating your order? \n");
                     return false;
@@ -284,6 +287,7 @@ public class App {
             }
         } 
         else {
+            clearScreen();
             randomResponse2();
             return false;
         }
@@ -299,6 +303,9 @@ public class App {
         int flag=0;
         while(flag==0){
             if(ck(action, new String[] {"no","not"})){
+                for(int i=0;i<order.length;i++){
+                    order[i]=0;
+                }
                 flag=2;
             }
             else if(ck(action, new String[] {"yes","correct"})){
@@ -310,6 +317,9 @@ public class App {
                 if(priceSum>money){
                     System.out.println("MiniWag: Wait! You don't even have the money!");
                     System.out.println("MiniWag: Buy something thats within your budget buddy");
+                    for(int i=0;i<order.length;i++){
+                        order[i]=0;
+                    }
                     flag=1;
                 }
                 else{
