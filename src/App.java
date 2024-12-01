@@ -17,8 +17,8 @@ public class App {
                             "MikeDonalds and repackage it in or wrapping.", "If you notice a bite, that’s because",
                             "Sometimes they get a little hungry on the way" }),
             new Food(25.0, "kilogramer",
-                    new String[] { "Convert that to pounds.", "Literally.", "All Americans do is eat.",
-                            "The metric system is the best.", "Europe is the best." }),
+                    new String[] { "Convert that to pounds.", "Literally",
+                            "The metric system is the best"}),
             new Food(13170.0, "gold brick",
                     new String[] { "Pros:", "- Retains Value", "- Shiny", "- Can be made into various objects",
                             "Cons:", "- Heavy", "- Will get you robbed", "- Tastes like metal" }),
@@ -65,7 +65,7 @@ public class App {
 
     public static boolean mainDialogue(String action){
         boolean flag=false;
-        if (ck(action, new String[] { "menu" })) {
+        if (ck(action, new String[] {"menu"})) {
             if (money >= 10) {
                 System.out.println("MiniWag: Sure! Here is the menu:");
                 System.out.println("MiniWag: If you need info about any item on the menu, just ask");
@@ -152,7 +152,8 @@ public class App {
         };
        
         double mg = 0.0;
-       
+        
+        System.out.println("");
         System.out.println("To get money, 'clean' the following words.");
         System.out.println("");
         System.out.println("Words will be given with two typos.");
@@ -186,7 +187,7 @@ public class App {
             String dw = cw.substring(0,dwi1)+"#"+cw.substring(dwi1+1,dwi2)+"#"+cw.substring(dwi2+1);
            
             System.out.println("Current streak: "+streak+" ("+totwo(Math.pow(1.5,streak))+"x multiplier)");
-            System.out.println("Total money gained: $"+mg);
+            System.out.println("Total money gained: $"+totwo(mg));
             System.out.println(dw);
             guess = input.nextLine();
             if ((guess.toLowerCase()).equals(words[cwi].toLowerCase())){
@@ -200,7 +201,7 @@ public class App {
                 System.out.println("Incorrect. Your streak of "+streak+" has been reset.");
             }
         }
-       
+        clearScreen();
         return mg;
     }
    
@@ -210,52 +211,58 @@ public class App {
     }
    
     public static double totwo(double d) {
-        d = Math.floor(d*100)/100.0;
-        return d;
+        String b=""+d;
+        if (b.indexOf(".")==-1) {
+            return Double.parseDouble(b+".00");
+        } else if (b.substring((b.indexOf(".")+1)).length()<3) {
+            return Double.parseDouble(b+"0");
+        } else {
+            return Double.parseDouble(b.substring(0,b.indexOf(".")+3));
+        }
+        
     }
-
     public static boolean foodResponse(String action) {
         clearScreen();
-        if (ck(action, new String[] { "what","?" }) && ck(action, new String[] { "grilled" })
+        if (ck(action, new String[] { "what","?","info","tell","information"}) && ck(action, new String[] { "grilled" })
                 && ck(action, new String[] { "cheese" })) {
             menu[0].printDesc();
         } 
-        else if (ck(action, new String[] { "what","?" }) && ck(action, new String[] { "stunner" })) {
+        else if (ck(action, new String[] { "what","?","info","tell","information"}) && ck(action, new String[] { "stunner" })) {
             menu[1].printDesc();
         } 
-        else if (ck(action, new String[] { "what","?" }) && ck(action, new String[] { "large" })
+        else if (ck(action, new String[] { "what","?","info","tell","information"}) && ck(action, new String[] { "large" })
                 && ck(action, new String[] { "mike" })) {
             menu[2].printDesc();
         } 
-        else if (ck(action, new String[] { "what","?" }) && ck(action, new String[] { "kilogramer" })) {
+        else if (ck(action, new String[] { "what","?","info","tell","information"}) && ck(action, new String[] { "kilogramer" })) {
             menu[3].printDesc();
         } 
-        else if (ck(action, new String[] { "what","?" }) && ck(action, new String[] { "gold","brick" })) {
+        else if (ck(action, new String[] { "what","?","info","tell","information"}) && ck(action, new String[] { "gold","brick" })) {
             menu[4].printDesc();
         } 
-        else if (ck(action, new String[] { "what","?" }) && ck(action, new String[] { "canada" })) {
+        else if (ck(action, new String[] { "what","?","info","tell","information"}) && ck(action, new String[] { "canada" })) {
             menu[5].printDesc();
         } 
-        else if (ck(action, new String[] { "what","?" }) && ck(action, new String[] { "spongebob" })) {
+        else if (ck(action, new String[] { "what","?","info","tell","information"}) && ck(action, new String[] { "spongebob" })) {
             menu[6].printDesc();
         } 
-        else if (ck(action, new String[] { "what","?" }) && ck(action, new String[] { "world" })
+        else if (ck(action, new String[] { "what","?","info","tell","information"}) && ck(action, new String[] { "world" })
                 && ck(action, new String[] { "peace" })) {
             menu[7].printDesc();
         } 
-        else if (ck(action, new String[] { "what","?" }) && ck(action, new String[] { "chicken" })
+        else if (ck(action, new String[] { "what","?","info","tell","information"}) && ck(action, new String[] { "chicken" })
                 && ck(action, new String[] { "sandwich" })) {
             menu[8].printDesc();
         } 
-        else if (ck(action, new String[] { "what","?" }) && ck(action, new String[] { "whyaburger" })) {
+        else if (ck(action, new String[] { "what","?","info","tell","information"}) && ck(action, new String[] { "whyaburger" })) {
             menu[9].printDesc();
         } 
-        else if (ck(action, new String[] { "buy", "take", "have", "grab", "want"})) {
+        else if (ck(action, new String[] {"buy", "take", "have", "grab", "want","give"})) {
             int flag=0;
             while(flag<2){
                 System.out.println("MiniWag: Oh yeah, I don't take orders for more than one of any item");
-                System.out.println("MiniWag: Im not here to give yall obesity");
-                System.out.println("MiniWag: Anyways, let me get this straight, you want");
+                System.out.println("MiniWag: I'm unfortunately not that smart");
+                System.out.println("MiniWag: Just to be straight, you want");
                 for (int i = 0; i < menu.length; i++) {
                     if (ck(action, new String[] { menu[i].getName() })) {
                         order[i]=1;
@@ -313,6 +320,7 @@ public class App {
                 for(int i=0; i<order.length; i++){
                     priceSum+=order[i]*menu[i].getCost();
                 }
+                clearScreen();
                 System.out.println("MiniWag: Alright, that will be $"+priceSum);
                 if(priceSum>money){
                     System.out.println("MiniWag: Wait! You don't even have the money!");
@@ -359,9 +367,9 @@ public class App {
             System.out.println("MiniWag: If you need to know anything about the menu, then just ask about it \n");
         } 
         else if (num == 1) {
-            System.out.println("MiniWag: I don't think i understand, if you want some info about any item on the menu,");
+            System.out.println("MiniWag: I don't think I understand, if you want some info about any item on the menu,");
             System.out.println("MiniWag: Just ask about it, or maybe you want to buy something?");
-            System.out.println("MiniWag: Make sure to clarify what you're trying to do, im not that smart \n");
+            System.out.println("MiniWag: Make sure to clarify what you're trying to do, I'm not that smart \n");
         } 
         else if(num==2) {
             System.out.println("MiniWag: Uhh sorry, but I didn't get that, do you want to buy something?");
@@ -373,13 +381,13 @@ public class App {
     public static void randomResponse3(){
         int num = (int) (Math.random() * 3);
         if(num==0){
-            System.out.println("MiniWag: Buddy, its a yes or no question, answer it properly");
+            System.out.println("MiniWag: It's a yes or no question.");
         }
         else if(num==1){
-            System.out.println("MiniWag: Hey, uhh answer my question properly");
+            System.out.println("MiniWag: You heard me, right? It's a yes or no question");
         }
         else if(num==2){
-            System.out.println("MiniWag: How hard is it for you to say yes or no?");
+            System.out.println("MiniWag: You either say yes, or you say no.");
         }
     }
 
