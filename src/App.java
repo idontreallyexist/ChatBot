@@ -25,7 +25,8 @@ public class App {
                             "Cons:", "- Heavy", "- Will get you robbed", "- Tastes like metal" }),
             new Food(2 * Math.pow(10, 15), "canada",
                     new String[] { "Wikipedia can probably", "Explain it better than I can." }),
-            new Food(0.62, "spongebob", new String[] { "This may be the best or worst", "Purchase of your life.",
+            new Food(0.62, "spongebob", 
+                    new String[] { "This may be the best or worst", "Purchase of your life.",
                     "I’m just saying,", "If you play clarinet and are a squid,", "I would avoid the purchase." }),
             new Food(Math.pow(2, 1023) * 1.99999999, "world peace",
                     new String[] { "I'm pretty sure you can't get that much money.",
@@ -36,7 +37,8 @@ public class App {
                     new String[] { "This is actually different", "From the slop they serve at Amador",
                             "For one, we use actual chicken,", "Not monkey knees grinded",
                             "With (2R,3S,4R,5R)-2,3,4,5,6-Pentahydroxyhexanal.", "(Also known as Glucose)" }),
-            new Food(18.0, "whyaburger", new String[] { "Why should you buy this?", "Why not?" }) };
+            new Food(18.0, "whyaburger", 
+                    new String[] { "Why should you buy this?", "Why not?" }) };
     static int[] order = new int[menu.length];
     static Scanner input = new Scanner(System.in);
     public static void main(String[] args) throws IOException, InterruptedException {
@@ -326,22 +328,28 @@ public class App {
                     priceSum+=order[i]*menu[i].getCost();
                 }
                 clearScreen();
-                System.out.println("MiniWag: Alright, that will be $"+priceSum);
-                if(priceSum>money){
-                    System.out.println("MiniWag: Wait! You don't even have the money!");
-                    System.out.println("MiniWag: Buy something thats within your budget buddy");
-                    for(int i=0;i<order.length;i++){
-                        order[i]=0;
+                if(order[7]==0){
+                    System.out.println("MiniWag: Alright, that will be $"+priceSum);
+                    if(priceSum>money){
+                        System.out.println("MiniWag: Wait! You don't even have the money!");
+                        System.out.println("MiniWag: Buy something thats within your budget buddy");
+                        for(int i=0;i<order.length;i++){
+                            order[i]=0;
+                        }
+                        System.out.println("Hit any key to continue");
+                        action=input.nextLine();
+                        clearScreen();
+                        flag=1;
                     }
-                    System.out.println("Hit any key to continue");
-                    action=input.nextLine();
-                    clearScreen();
-                    flag=1;
+                    else{
+                        System.out.println("MiniWag: Alright, its done! Come again soon, or don't");
+                        money-=priceSum;
+                        flag=3;
+                    }
                 }
                 else{
-                    System.out.println("MiniWag: Alright, its done! Come again soon, or don't");
-                    money-=priceSum;
-                    flag=3;
+                    System.out.println("MiniWag: You can't buy world peace buddy");
+                    flag=1;
                 }
             }
             else{
