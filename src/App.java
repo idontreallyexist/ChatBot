@@ -349,6 +349,9 @@ public class App {
                 }
                 else{
                     System.out.println("MiniWag: You can't buy world peace buddy");
+                    System.out.println("Hit any key to continue");
+                    action=input.nextLine();
+                    clearScreen();
                     flag=1;
                 }
             }
