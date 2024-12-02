@@ -15,7 +15,7 @@ public class App {
             new Food(15.0, "mike",
                     new String[] { "I'm going to be completely honest,", "We don't even make these.",
                             "If you order this we'll just send one of", "Our delivery guys to pick it up from",
-                            "MikeDonalds and repackage it in or wrapping.", "If you notice a bite, that's because",
+                            "MikeDonalds and repackage it in our wrapping.", "If you notice a bite, that's because",
                             "Sometimes they get a little hungry on the way" }),
             new Food(25.0, "kilogramer",
                     new String[] { "Convert that to pounds.", "Literally",
