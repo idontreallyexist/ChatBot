@@ -63,10 +63,12 @@ public class App {
 
     public static void clearScreen() {
         try {
-            if (System.getProperty("os.name").contains("Windows"))
+            if (System.getProperty("os.name").contains("Windows")) {
                 new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-            else
-                Runtime.getRuntime().exec("clear");
+            }
+            else {
+                System.out.print("\033[H\033[2J");
+            }
         } catch (IOException | InterruptedException ex) {}
     }
 
