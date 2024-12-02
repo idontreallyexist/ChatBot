@@ -61,7 +61,7 @@ public class App {
         }
     }
 
-    //due to reasons, this method only works when not on a browser and on a windows os
+    //due to reasons, this method only works when not on a browser
     public static void clearScreen() {
         try {
             if (System.getProperty("os.name").contains("Windows")) {
