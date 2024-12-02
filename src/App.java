@@ -41,7 +41,7 @@ public class App {
                     new String[] { "Why should you buy this?", "Why not?" }) };
     static int[] order = new int[menu.length];
     static Scanner input = new Scanner(System.in);
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) throws Exception {
         clearScreen();
         boolean flag=false;
         while (true) {
