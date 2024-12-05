@@ -435,21 +435,21 @@ class Food {
     private String name;
     private String[] decription;
 
-    Food(double c, String n, String[] d) {
+    public Food(double c, String n, String[] d) {
         cost = c;
         name = n;
         decription = d;
     }
 
-    double getCost() {
+    public double getCost() {
         return cost;
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
 
-    void printDesc() {
+    public void printDesc() {
         for (String i : decription) {
             System.out.println(i);
         }
